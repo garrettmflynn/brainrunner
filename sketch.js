@@ -68,6 +68,7 @@
       game.brains[game.info.access].forEach( async (user,username) => {
         let concentration = await user.getMetric('alpha')
         if (username == game.me.username){
+          console.log(concentration.average)
           user.setData({concentration:concentration.average})
           user.setData({points:coinsCollected.length})
         }
