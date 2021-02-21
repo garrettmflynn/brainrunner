@@ -2,15 +2,25 @@
   let connectToggle;
   let disconnectToggle;
   let museToggle;
-
   let marg = 100;
-  let colors = []
-  let concentration = 0.5;
   let key;
+  let sound;
+  let song;
 
-  let gameStart = 0;
+  preload = () => {
+    // "Bell, Candle Damper, A (H4n).wav" by InspectorJ (www.jshaw.co.uk) of Freesound.org
+    sound = loadSound('bell.wav');
+
+    // AudioBlocks | audioblocks-lift_me_up_songtradr2038440_BwsxmQRPw.wav
+    song = loadSound('song.wav');
+  }
+
 
   setup = () => {
+
+      // Sound
+      song.setVolume(0.5)
+      song.loop()
 
       // P5 Setup
       var c = createCanvas(windowWidth, windowHeight);
@@ -23,8 +33,8 @@
       disconnectToggle.position(windowWidth-25-disconnectToggle.width, windowHeight-125-disconnectToggle.height);
       museToggle.position(windowWidth-25-museToggle.width, windowHeight-50-museToggle.height);
       disconnectToggle.hide()
-    
-    
+
+
       // Brains@Play Setup
       startAllGames()
 
@@ -68,8 +78,10 @@
       game.brains[game.info.access].forEach( async (user,username) => {
         let concentration = await user.getMetric('alpha')
         if (username == game.me.username){
-          console.log(concentration.average)
           user.setData({concentration:concentration.average})
+          if (user.data.points !== undefined && user.data.points < coinsCollected.length){
+            sound.play();
+          }
           user.setData({points:coinsCollected.length})
         }
 
