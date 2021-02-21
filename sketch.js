@@ -8,6 +8,8 @@
   let concentration = 0.5;
   let key;
 
+  let gameStart = 0;
+
   setup = () => {
 
       // P5 Setup
