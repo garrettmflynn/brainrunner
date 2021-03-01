@@ -10,5 +10,8 @@ Get ready for more work from this team as they continue pushing forward the deve
 
 See the full story about BrainRunner on [our Devpost](https://devpost.com/software/brainrunner).
 
+## The Team
+![BrainRunner Team](./team.png)
+
 
 
